@@ -10,6 +10,6 @@ if __name__ == '__main__':
         with open(input_path, 'r') as f:
             text = f.read()
         sample = pt.prepare_sample(text)
-        file_name = input_path.split('/')[-1]
+        file_name = input_path.split('/')[-1].split('.')[0]
         pt.save_sample_to_file(sample, 'samples/' + file_name)
 

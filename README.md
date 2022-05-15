@@ -1,11 +1,25 @@
 # Text_to_speech spring project
+___
 
 Text to speech for JB Academy
 
-1) install tts lib: https://github.com/coqui-ai/TTS
+## Installation
+___
+for LinuxOS:
+```
+pip install tts
 
-2) prepare samples with **./main.py data/<path_to_sample>** 
+pip install --upgrade numpy
+   
+pip install pandas
+```
+if you have problems installing tts, see [tts-doc](https://tts.readthedocs.io/en/latest/installation.html)
 
-    you can use *.csv (for many samples) or *.txt (for one sample) files, it will be save in **samples/**
+## Make samples
+___
 
-3) run tts with **./run.sh samples/<path_to_sample>**
+1) prepare samples with `./main.py data/<path_to_sample>` 
+
+   you can use *.csv (for many samples) or *.txt (for one sample) files, it will be save in **samples/**
+
+2) run tts with `./run.sh samples/<path_to_sample>`
