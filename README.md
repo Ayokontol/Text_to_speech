@@ -2,10 +2,10 @@
 
 Text to speech for JB Academy
 
-install tts lib: https://github.com/coqui-ai/TTS
+1) install tts lib: https://github.com/coqui-ai/TTS
 
-prepare sample with prepare_text.prepare_sample(sample)
+2) prepare samples with **./main.py data/<path_to_sample>** 
 
-save sample to file with prepare_text.save_sample_to_file(sample, path_to_sample)
+    you can use *.csv (for many samples) or *.txt (for one sample) files, it will be save in **samples/**
 
-run ./run.sh <path_to_sample>
+3) run tts with **./run.sh samples/<path_to_sample>**

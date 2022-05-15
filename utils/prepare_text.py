@@ -193,7 +193,7 @@ def save_sample_to_file(sample, path='samples/new_sample.txt'):
 
 
 # get samples from csv, prepare and put to path_to_samples/
-def prepare_samples_from_csv(csv_name, path_to_samples_dir='samples/'):
+def prepare_and_save_samples_from_csv(csv_name, path_to_samples_dir='samples/'):
     data = pd.read_csv(csv_name)['text']
 
     samples = []

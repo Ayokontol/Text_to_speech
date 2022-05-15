@@ -1,13 +1,15 @@
 from utils import prepare_text as pt
-import pandas as pd
-
-
-def test():
-    data = pd.read_csv('data/AN-1073-text.csv')['text']
-    text = pt.prepare_sample(data[3])
-    print(text)
+from sys import argv
 
 
 if __name__ == '__main__':
-    test()
-    #pt.prepare_samples_from_csv(csv_name='data/AN-1073-text.csv', path_to_samples_dir='/samples/')
+    script, input_path = argv
+    if input_path[:-3] == 'csv':
+        pt.prepare_and_save_samples_from_csv(csv_name=input_path, path_to_samples_dir='/samples/')
+    else:
+        with open(input_path, 'r') as f:
+            text = f.read()
+        sample = pt.prepare_sample(text)
+        file_name = input_path.split('/')[-1]
+        pt.save_sample_to_file(sample, 'samples/' + file_name)
+
