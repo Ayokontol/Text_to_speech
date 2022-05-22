@@ -156,6 +156,21 @@ def clean_latex(string):
     return res
 
 
+# split sentences if len > 200 symbols
+def separate_sentences(text, max_len=200):
+    sentences = text.split('.')
+    for ind, sent in enumerate(sentences):
+        start = 0
+        while start < len(sent) - max_len:
+            end = sent[start:start+max_len].rfind(',')
+            if end == -1:
+                end = sent[start:start+max_len].rfind(' ')
+            sent = sent[:end] + '. ' + sent[end+1:].lstrip().capitalize()
+            start = end + 1
+        sentences[ind] = sent
+    return '.'.join(sentences)
+
+
 # INPUT : sample: str
 def prepare_sample(sample):
     # try to delete code-style text, see 'substring_is_code' function
@@ -182,6 +197,8 @@ def prepare_sample(sample):
         sample = sample[:-1]
     # delete '  '
     sample = re.sub(r'\s+', ' ', sample)
+
+    sample = separate_sentences(sample)
 
     return sample
 
