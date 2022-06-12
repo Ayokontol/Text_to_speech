@@ -2,9 +2,10 @@ import re
 import pandas as pd
 
 
+# return True if string is code with unread symbols or too long to read
 def substring_is_code(string):
     string_ = re.sub(r'\s+', '', string)
-    return not string_.isalnum()
+    return not (string_.isalnum() and len(string) < 50)
 
 
 # replacing characters with their names
@@ -46,6 +47,7 @@ def replace_symbols_for_code(string):
         '@': 'at',
         '~': 'tilde',
         '%': 'percent',
+        '.': 'dot',
     })
     res = string
     for symb in string:
@@ -106,6 +108,19 @@ def clean_latex(string):
     # replace <= and >=
     res = re.sub(r'leq|le', ' less or equals than ', res)
     res = re.sub(r'geq|ge', ' greater or equals than ', res)
+
+    # replace \ne, \neq
+    res = re.sub(r'neq|ne', ' not equals ', res)
+
+    # replace \longrightarrow and \leadsto and \to
+    res = re.sub(r'longrightarrow', ' goes to ', res)
+    res = re.sub(r'leadsto', ' goes to ', res)
+    res = re.sub(r'to', ' goes to ', res)
+    # res = re.sub(r'rightleftarrows', ' not equals ', res) # replace for what?
+
+    # replace '\right(' and '\left(' to '(' and ')'
+    res = re.sub(r'right\)', ')', res)
+    res = re.sub(r'left\(', '(', res)
 
     # delete all matrix
     # begin{pmatrix} .. end{pmatrix} -> matrix
